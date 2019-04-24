@@ -7,19 +7,17 @@ function main() {
   //-- Acceso al objeto con el canvas
   var canvas = document.getElementById('display');
 
-  //-- Se establece como tamaño del canvas el mismo
-  //-- que el de la imagen original
+  var deslizador = document.getElementById('deslizador');
+
+  var des_value = document.getElementById('des_value');
+
+  var ctx = canvas.getContext("2d");
 
   canvas.width = img.width;
   canvas.height = img.height;
 
-  //-- Obtener el contexto del canvas para
-  //-- trabajar con el
-  var ctx = canvas.getContext("2d");
-
   //-- Situar la imagen original en el canvas
-  //-- No se han hecho manipulaciones todavia
-  ctx.drawImage(img,0,0,canvas.width,canvas.height);
+  ctx.drawImage(img,0,0,600,400);
 
   //-- Obtener la imagen del canvas en pixeles
   var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -40,10 +38,5 @@ function main() {
   //-- tiene un tamaño de 4 * numero de pixeles
   console.log("Total de datos de la imagen: " + npixels * 4)
 
-  var i = 200 + 50*canvas.width;
-
-  for (var i = 0; i < data.length; i+=4) {
-    data[i] = 0; //-- Canal rojo a 0
-  }
   ctx.putImageData(imgData, 0, 0);
 }
